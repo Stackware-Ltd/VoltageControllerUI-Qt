@@ -1,0 +1,84 @@
+# Resource object code (Python 3)
+# Created by: object code
+# Created by: The Resource Compiler for Qt version 6.8.2
+# WARNING! All changes made in this file will be lost!
+
+from PySide6 import QtCore
+
+qt_resource_data = b"\
+\x00\x00\x014\
+i\
+mport QtQuick\x0aim\
+port QtQuick.Con\
+trols\x0a\x0aimport sc\
+reens\x0aWindow {\x0a \
+   id: rootWindo\
+w\x0a    width: 480\
+\x0a    height: 320\
+\x0a    visible: tr\
+ue\x0a    title: qs\
+Tr(\x22Voltage Cont\
+rol Unit Program\
+\x22)\x0a    color: \x22#\
+FFFFFF\x22\x0a\x0a    Scr\
+eenMain {\x0a      \
+  id: mainScreen\
+\x0a        width: \
+parent.width\x0a   \
+     height: par\
+ent.height\x0a    }\
+\x0a}\x0a\
+\x00\x00\x00;\
+m\
+odule screens\x0a\x0aS\
+creenMain       \
+       1.0 Scree\
+nMain.qml\x0a\
+\x00\x00\x00I\
+i\
+mport QtQuick\x0aim\
+port QtQuick.Con\
+trols.Universal\x0a\
+\x0aItem {\x0a    id: \
+root\x0a\x0a}\x0a\
+"
+
+qt_resource_name = b"\
+\x00\x07\
+\x09\xa8\xbc\xb3\
+\x00s\
+\x00c\x00r\x00e\x00e\x00n\x00s\
+\x00\x08\
+\x08\x01Z\x5c\
+\x00m\
+\x00a\x00i\x00n\x00.\x00q\x00m\x00l\
+\x00\x06\
+\x07\x84+\x02\
+\x00q\
+\x00m\x00l\x00d\x00i\x00r\
+\x00\x0e\
+\x03\x16\xc8<\
+\x00S\
+\x00c\x00r\x00e\x00e\x00n\x00M\x00a\x00i\x00n\x00.\x00q\x00m\x00l\
+"
+
+qt_resource_struct = b"\
+\x00\x00\x00\x00\x00\x02\x00\x00\x00\x02\x00\x00\x00\x01\
+\x00\x00\x00\x00\x00\x00\x00\x00\
+\x00\x00\x00\x14\x00\x00\x00\x00\x00\x01\x00\x00\x00\x00\
+\x00\x00\x01\x96\x16\xd6\x86o\
+\x00\x00\x00\x00\x00\x02\x00\x00\x00\x02\x00\x00\x00\x03\
+\x00\x00\x00\x00\x00\x00\x00\x00\
+\x00\x00\x00<\x00\x00\x00\x00\x00\x01\x00\x00\x01w\
+\x00\x00\x01\x96\x16\xd5\x81\xc4\
+\x00\x00\x00*\x00\x00\x00\x00\x00\x01\x00\x00\x018\
+\x00\x00\x01\x96\x16\xb0\xe7Q\
+"
+
+def qInitResources():
+    QtCore.qRegisterResourceData(0x03, qt_resource_struct, qt_resource_name, qt_resource_data)
+
+def qCleanupResources():
+    QtCore.qUnregisterResourceData(0x03, qt_resource_struct, qt_resource_name, qt_resource_data)
+
+qInitResources()

@@ -1,0 +1,10 @@
+{
+    "files": [
+        "README.md",
+        "assets/resources.qrc",
+        "main.py"
+    ],
+    "qmlImportPaths": [
+        "assets"
+    ]
+}
