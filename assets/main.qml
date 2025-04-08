@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Controls
 
 import screens
+
 Window {
     id: rootWindow
     width: 480

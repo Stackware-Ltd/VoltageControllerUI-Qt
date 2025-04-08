@@ -3,5 +3,6 @@
         <file>main.qml</file>
         <file>screens/ScreenMain.qml</file>
         <file>screens/qmldir</file>
+        <file>images/icon-info.png</file>
     </qresource>
 </RCC>
