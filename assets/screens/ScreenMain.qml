@@ -28,7 +28,7 @@ Item {
                     text: "Voltage Control Unit"
                     font.pixelSize: resp.avg(65)
                     font.bold: true
-                    color: "white"
+                    color: "black"
                 }
 
                 Item { Layout.fillWidth: true }
@@ -233,7 +233,7 @@ Item {
             Text {
                 id:textPopUp
                 text: "Popup"
-                color: "white"
+                color: "black"
                 font.pixelSize: resp.avg(48)
                 anchors.centerIn: parent
                 wrapMode: Text.WordWrap
