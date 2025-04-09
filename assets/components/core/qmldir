@@ -1,0 +1,16 @@
+module components.core
+
+CoreActionButton          1.0 Buttons/CoreActionButton.qml
+CoreButton                1.0 Buttons/CoreButton.qml
+CoreCardHolder            1.0 CardHolders/CoreCardHolder.qml
+CoreImageButton           1.0 Buttons/CoreImageButton.qml
+CoreImageToggleButton     1.0 Buttons/CoreImageToggleButton.qml
+CoreComboBox              1.0 InputFields/CoreComboBox.qml
+CoreProgressBar           1.0 ProgressBars/CoreProgressBar.qml
+CoreTextField             1.0 InputFields/CoreTextField.qml
+CoreCalender              1.0 Calender/CoreCalender.qml
+CoreSlider                1.0 CoreSlider/CoreSlider.qml
+ResponsiveHandler         1.0 ResponsiveHandler/ResponsiveHandler.qml
+ThemeProvider             1.0 ThemeProvider/ThemeProvider.qml
+ToastManager              1.0 Toaster/ToastManager.qml
+Toast               	  1.0 Toaster/Toast.qml

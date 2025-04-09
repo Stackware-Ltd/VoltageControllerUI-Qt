@@ -4,5 +4,35 @@
         <file>screens/ScreenMain.qml</file>
         <file>screens/qmldir</file>
         <file>images/icon-info.png</file>
+        <file>components/application/DropDownBox/DropDownBox.qml</file>
+        <file>components/application/DropDownBox/SearchDropDownBox.qml</file>
+        <file>components/application/NavigationBar/NavigationBar.qml</file>
+        <file>components/application/NavigationBar/NavigationButton.qml</file>
+        <file>components/application/NavigationBar/NotificationBadge.qml</file>
+        <file>components/application/NavigationCard/NavigationCard.qml</file>
+        <file>components/application/qmldir</file>
+        <file>components/core/Buttons/button_assets/button_pressed.svg</file>
+        <file>components/core/Buttons/button_assets/button_pressed_hold.svg</file>
+        <file>components/core/Buttons/button_assets/button_unpressed.svg</file>
+        <file>components/core/Buttons/button_assets/button_unpressed_hold.svg</file>
+        <file>components/core/Buttons/CoreActionButton.qml</file>
+        <file>components/core/Buttons/CoreButton.qml</file>
+        <file>components/core/Buttons/CoreImageButton.qml</file>
+        <file>components/core/Buttons/CoreImageToggleButton.qml</file>
+        <file>components/core/Calender/CoreCalender.qml</file>
+        <file>components/core/CardHolders/CoreCardHolder.qml</file>
+        <file>components/core/InputFields/CoreComboBox.qml</file>
+        <file>components/core/InputFields/CoreTextField.qml</file>
+        <file>components/core/ProgressBars/CoreProgressBar.qml</file>
+        <file>components/core/ResponsiveHandler/ResponsiveHandler.qml</file>
+        <file>components/core/ThemeProvider/ThemeProvider.qml</file>
+        <file>components/core/Toaster/Toast.qml</file>
+        <file>components/core/Toaster/ToastManager.qml</file>
+        <file>components/core/qmldir</file>
+        <file>images/icon-add-3x.png</file>
+        <file>images/icon-sub-3x.png</file>
+        <file>images/icon-sub-2x.png</file>
+        <file>components/core/CoreSlider/CoreSlider.qml</file>
+        <file>images/icon-handle.png</file>
     </qresource>
 </RCC>

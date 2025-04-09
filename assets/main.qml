@@ -1,6 +1,8 @@
 import QtQuick
 import QtQuick.Controls
 
+import components.core
+import components.application
 import screens
 
 Window {
@@ -9,7 +11,11 @@ Window {
     height: 320
     visible: true
     title: qsTr("Voltage Control Unit Program")
-    color: "#FFFFFF"
+    color: theme.colorBackground.light
+
+
+    ThemeProvider {id: theme}
+    ResponsiveHandler {id: resp}
 
     ScreenMain {
         id: mainScreen

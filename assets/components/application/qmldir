@@ -1,0 +1,8 @@
+module components.application
+
+NavigationBar                  	1.0 NavigationBar/NavigationBar.qml
+NavigationButton                1.0 NavigationBar/NavigationButton.qml
+NotificationBadge               1.0 NavigationBar/NotificationBadge.qml
+NavigationCard                  1.0 NavigationCard/NavigationCard.qml
+SearchDropDownBox               1.0 DropDownBox/SearchDropDownBox.qml
+DropDownBox                     1.0 DropDownBox/DropDownBox.qml
