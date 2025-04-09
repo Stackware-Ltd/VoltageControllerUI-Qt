@@ -111,6 +111,7 @@ Item {
                             radius: resp.avg(25)
                             color: "#0F6CBD"
                             colorPressed: "#d0d0d0"
+                            shadowEffect.opacity : 0.2
 
                             image.source: "qrc:/images/icon-sub-3x.png"
 
@@ -125,9 +126,10 @@ Item {
                             to: 3.3
                             value: 1.5
                             stepSize: 0.1
-                            backgroundHeight: resp.avg(15)
+                            backgroundHeight: resp.avg(30)
                             Layout.fillWidth: true
                             backgroundColor: "#D9D9D9"
+                            backgroundRadius : backgroundHeight/2
 
                             backgroundHighlightedColor:"#0F6CBD"
 
@@ -164,7 +166,7 @@ Item {
                             radius: resp.avg(25)
                             color: "#0F6CBD"
                             colorPressed: "#d0d0d0"
-
+                            shadowEffect.opacity : 0.2
                             image.source: "qrc:/images/icon-add-3x.png"
 
                             onClicked: {
@@ -239,16 +241,11 @@ Item {
 
             CoreButton {
                 id: backBtn
-                anchors.top : textPopUp.bottom
-                anchors.left: parent.left
-                anchors.right : parent.right
-
-                anchors.topMargin: resp.avg(50)
-                anchors.leftMargin: resp.avg(30)
-                anchors.rightMargin: resp.avg(30)
-
-                implicitHeight: resp.avg(100)
-                implicitWidth : resp.avg(200)
+                height: resp.avg(170)
+                width : resp.avg(480)
+                anchors.bottom : parent.bottom
+                anchors.horizontalCenter : parent.horizontalCenter
+                anchors.bottomMargin: resp.avg(30)
 
                 color : "#0F6CBD"
                 radius: resp.avg(25)
