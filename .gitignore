@@ -52,3 +52,12 @@ compile_commands.json
 *creator.user*
 
 *_qmlcache.qrc
+
+# .pyproject.user file
+.pyproject.user
+
+# __pycache__ folder
+__pycache__/
+
+# .qtcreator folder
+.qtcreator/
