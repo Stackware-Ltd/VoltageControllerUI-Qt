@@ -54,7 +54,7 @@ compile_commands.json
 *_qmlcache.qrc
 
 # .pyproject.user file
-.pyproject.user
+*.pyproject.user
 
 # __pycache__ folder
 __pycache__/
