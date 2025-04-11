@@ -34,5 +34,6 @@
         <file>images/icon-sub-2x.png</file>
         <file>components/core/CoreSlider/CoreSlider.qml</file>
         <file>images/icon-handle.png</file>
+        <file>images/icon-info-2x.png</file>
     </qresource>
 </RCC>

@@ -35,7 +35,9 @@ Item {
 
                 Image {
                     id: infoPopUpButton
-                    source: "qrc:/images/icon-info.png"
+                    source: "qrc:/images/icon-info-2x.png"
+                    width: resp.avg(80)
+                    height: resp.avg(80)
                     fillMode: Image.PreserveAspectFit
 
                     MouseArea {
@@ -136,6 +138,8 @@ Item {
                             handleAddChild: Image {
                                 source: "qrc:/images/icon-handle.png"
                                 anchors.centerIn: parent
+                                width: resp.avg(80)
+                                height: resp.avg(80)
                                 fillMode: Image.PreserveAspectFit
                             }
 
