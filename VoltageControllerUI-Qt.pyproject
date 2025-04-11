@@ -2,7 +2,8 @@
     "files": [
         "README.md",
         "assets/resources.qrc",
-        "main.py"
+        "main.py",
+        "modules/VoltageController.py"
     ],
     "qmlImportPaths": [
         "assets"

@@ -142,6 +142,10 @@ Item {
                                 height: resp.avg(80)
                                 fillMode: Image.PreserveAspectFit
                             }
+                            
+                            onValueChanged: {
+                                voltage_controller.set_voltage(voltageSlider.value.toFixed(1))
+                            }
 
                             Label {
                                 id: min
@@ -230,6 +234,10 @@ Item {
                 label.color: "#FFFFFF"
                 label.font.pixelSize: resp.avg(56)
                 label.font.weight: Font.Bold
+
+                onClicked: {
+                    voltage_controller.set_voltage(parseFloat(voltageInput.text))
+                }
             }
         }
 
