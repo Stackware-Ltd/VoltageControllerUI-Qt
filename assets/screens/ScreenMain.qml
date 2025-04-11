@@ -26,7 +26,7 @@ Item {
                 Label {
                     id:voltageHeading
                     text: "Voltage Control Unit"
-                    font.pixelSize: resp.avg(65)
+                    font.pixelSize: resp.avg(70)
                     font.bold: true
                     color: "black"
                 }
@@ -84,6 +84,14 @@ Item {
                             border.width: resp.avg(8)
                         }
                     }
+
+                    onCheckedChanged: {
+                        if (checked) {
+                            voltage_controller.set_voltage(voltageSlider.value.toFixed(1))
+                        } else {
+                            voltage_controller.set_voltage(0.0)
+                        }
+                    }
                 }
             }
 
@@ -113,8 +121,10 @@ Item {
                             radius: resp.avg(25)
                             color: "#0F6CBD"
                             colorPressed: "#d0d0d0"
-                            shadowEffect.opacity : 0.2
+                            enabled: outputControl.checked
+                            opacity: outputControl.checked ? 1.0 : 0.5
 
+                            shadowEffect.opacity : 0.2
                             image.source: "qrc:/images/icon-sub-3x.png"
 
                             onClicked: {
@@ -128,6 +138,9 @@ Item {
                             to: 3.3
                             value: 1.5
                             stepSize: 0.1
+                            enabled : outputControl.checked
+                            opacity: outputControl.checked ? 1.0 : 0.3
+
                             backgroundHeight: resp.avg(30)
                             Layout.fillWidth: true
                             backgroundColor: "#D9D9D9"
@@ -154,7 +167,7 @@ Item {
                                 font.pixelSize: resp.avg(50)
                                 anchors.right :  parent.left
                                 anchors.top : parent.bottom
-                                anchors.rightMargin:  - resp.avg(12)
+                                anchors.rightMargin:  - resp.avg(16)
                             }
 
                             Label {
@@ -166,6 +179,7 @@ Item {
                                 anchors.top : parent.bottom
                                 anchors.leftMargin: - resp.avg(50)
                             }
+
                         }
 
                         CoreActionButton {
@@ -175,6 +189,9 @@ Item {
                             radius: resp.avg(25)
                             color: "#0F6CBD"
                             colorPressed: "#d0d0d0"
+                            enabled: outputControl.checked
+                            opacity: outputControl.checked ? 1.0 : 0.5
+
                             shadowEffect.opacity : 0.2
                             image.source: "qrc:/images/icon-add-3x.png"
 
@@ -204,6 +221,7 @@ Item {
                     id: voltageInput
                     implicitHeight: resp.avg(150)
                     placeholder: ""
+                    enabled: outputControl.checked
                     Layout.fillWidth: true
                     font.pixelSize: resp.avg(58)
 
@@ -211,9 +229,11 @@ Item {
                     borderColor: "#E0E0E0"
                     borderWidth : resp.avg(8)
                     borderRadius: resp.avg(25)
-                    textColor: "#AFAFAF"
+                    textColor: outputControl.checked ? "#AFAFAF" : "#a0a0a0"
                     placeholderTextColor: "#AFAFAF"
                     text: voltageSlider.value.toFixed(1)
+                    color: outputControl.checked ? "#ffffff" : "#e0e0e0"
+
 
                     validator: DoubleValidator {
                             bottom: 0
@@ -230,6 +250,8 @@ Item {
                 color : "#0F6CBD"
                 radius: resp.avg(25)
                 elevate: true
+                enabled: outputControl.checked
+                opacity: outputControl.checked ? 1.0 : 0.5
 
                 label.text: "Submit"
                 label.color: "#FFFFFF"
@@ -303,6 +325,20 @@ Item {
                 label.font.weight: Font.Bold
 
                 onClicked: infoPopup.close()
+            }
+        }
+    }
+
+    Connections {
+        target: voltage_controller
+        function onVoltageChanged(newVoltage) {
+            // update coreslider
+            if (Math.abs(voltageSlider.value - newVoltage) > 0.001) {
+                voltageSlider.value = newVoltage
+            }
+            // update textfield
+            if (Math.abs(parseFloat(voltageInput.text) - newVoltage) > 0.001) {
+                voltageInput.text = newVoltage.toFixed(1)
             }
         }
     }
