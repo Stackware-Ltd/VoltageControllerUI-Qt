@@ -63,3 +63,5 @@ __pycache__/
 .qtcreator/
 
 *.png:Zone.Identifier
+
+venv
