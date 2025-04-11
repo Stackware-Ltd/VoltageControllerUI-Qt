@@ -205,6 +205,12 @@ Item {
                     textColor: "#AFAFAF"
                     placeholderTextColor: "#AFAFAF"
                     text: voltageSlider.value.toFixed(1)
+
+                    validator: DoubleValidator {
+                            bottom: 0
+                            top: 3.3
+                            notation: DoubleValidator.StandardNotation
+                    }
                 }
             }
 
