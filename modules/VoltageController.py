@@ -9,13 +9,14 @@ class VoltageController(QObject):
     def __init__(self, gpio_pin=19):
         super().__init__()
 
-        GPIO.setmode(GPIO.BCM)
-        GPIO.setup(gpio_pin, GPIO.OUT)
-
-        self.pwm = GPIO.PWM(gpio_pin, 5000)  # 5 kHz
-        self.pwm.start(0)  # Start with 0% duty
-
+        self.gpio_pin = gpio_pin
         self.current_voltage = 0.0
+
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(self.gpio_pin, GPIO.OUT)
+
+        self.pwm = GPIO.PWM(self.gpio_pin, 5000)  # 5 kHz
+        self.pwm.start(0)  # Start with 0% duty
 
     @Slot(float)
     def set_voltage(self, voltage):
@@ -24,7 +25,7 @@ class VoltageController(QObject):
             return
 
         try:
-            self.current_voltage = clamped_voltage
+            self.current_voltage = voltage
             clamped_voltage = max(0.0, min(3.3, voltage))
 
             pwm_value = round((clamped_voltage / 3.3) * 100 , 1)

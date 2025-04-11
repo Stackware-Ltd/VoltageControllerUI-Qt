@@ -19,6 +19,7 @@ if __name__ == "__main__":
 
     # Initialize modules
     voltage_controller = VoltageController()
+    app.aboutToQuit.connect(voltage_controller.cleanup)
     engine.rootContext().setContextProperty("voltage_controller", voltage_controller)
 
     qml_file = os.path.join(os.path.dirname(__file__), "assets", "main.qml")
