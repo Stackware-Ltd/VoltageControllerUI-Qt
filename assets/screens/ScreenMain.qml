@@ -151,9 +151,9 @@ Item {
                                 id: min
                                 text: "0"
                                 color: "#aaaaaa"
+                                font.pixelSize: resp.avg(50)
                                 anchors.right :  parent.left
                                 anchors.top : parent.bottom
-
                                 anchors.rightMargin:  - resp.avg(12)
                             }
 
@@ -161,6 +161,7 @@ Item {
                                 id: max
                                 text: "3.3";
                                 color: "#aaaaaa"
+                                font.pixelSize: resp.avg(50)
                                 anchors.left :  parent.right
                                 anchors.top : parent.bottom
                                 anchors.leftMargin: - resp.avg(50)
@@ -247,14 +248,41 @@ Item {
             height: parent.height - 40
             modal: true
             anchors.centerIn: parent
+            background: Rectangle {
+                color: "white"
+                radius: resp.avg(25)
+            }
 
-            Text {
-                id:textPopUp
-                text: "Popup"
-                color: "black"
-                font.pixelSize: resp.avg(48)
+            ColumnLayout {
                 anchors.centerIn: parent
-                wrapMode: Text.WordWrap
+                spacing: resp.avg(20)
+                width: parent.width - resp.avg(40)
+
+                Label {
+                    text: "Voltage Control Unit"
+                    font.pixelSize: resp.avg(60)
+                    font.bold: true
+                    color: "#0F6CBD"
+                    Layout.alignment: Qt.AlignHCenter
+                }
+
+                Label {
+                    text: "Version: 1.0.0"
+                    font.pixelSize: resp.avg(40)
+                    color: "#606060"
+                    Layout.alignment: Qt.AlignHCenter
+                    Layout.topMargin: resp.avg(10)
+                }
+
+                Label {
+                    text: "Control voltage output from 0V to\n3.3V using PWM"
+                    font.pixelSize: resp.avg(48)
+                    color: "#000000"
+                    horizontalAlignment: Text.AlignHCenter
+                    Layout.alignment: Qt.AlignHCenter
+                    Layout.topMargin: resp.avg(30)
+                    wrapMode: Text.WordWrap
+                }
             }
 
             CoreButton {
