@@ -336,10 +336,6 @@ Item {
             if (Math.abs(voltageSlider.value - newVoltage) > 0.001) {
                 voltageSlider.value = newVoltage
             }
-            // update textfield
-            if (Math.abs(parseFloat(voltageInput.text) - newVoltage) > 0.001) {
-                voltageInput.text = newVoltage.toFixed(1)
-            }
         }
     }
 }
