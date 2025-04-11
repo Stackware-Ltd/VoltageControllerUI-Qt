@@ -10,9 +10,10 @@ Window {
     width: 480
     height: 320
     visible: true
-    title: qsTr("Voltage Control Unit Program")
+    title: qsTr("Voltage Controller Program")
     color: theme.colorBackground.light
-
+    visibility: Window.Maximized
+    flags: Qt.FramelessWindowHint
 
     ThemeProvider {id: theme}
     ResponsiveHandler {id: resp}
