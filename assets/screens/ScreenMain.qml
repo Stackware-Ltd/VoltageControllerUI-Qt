@@ -41,9 +41,9 @@ Item {
                     fillMode: Image.PreserveAspectFit
 
                     MouseArea {
-                       anchors.fill: parent
-                       onClicked: infoPopup.open()
-                   }
+                        anchors.fill: parent
+                        onClicked: infoPopup.open()
+                    }
                 }
             }
 
@@ -223,22 +223,22 @@ Item {
                     placeholder: ""
                     enabled: outputControl.checked
                     Layout.fillWidth: true
+                    leftPadding: resp.avg(50)
+
+                    text: voltageSlider.value.toFixed(1)
+                    textColor: outputControl.checked ? "AFAFAF" : "#A0A0A0"
+                    placeholderTextColor: "#AFAFAF"
                     font.pixelSize: resp.avg(58)
 
-                    fillColor : "#ffffff"
+                    fillColor: outputControl.checked ? "#FFFFFF" : "#E0E0E0"
                     borderColor: "#E0E0E0"
-                    borderWidth : resp.avg(8)
+                    borderWidth: resp.avg(8)
                     borderRadius: resp.avg(25)
-                    textColor: outputControl.checked ? "#AFAFAF" : "#a0a0a0"
-                    placeholderTextColor: "#AFAFAF"
-                    text: voltageSlider.value.toFixed(1)
-                    color: outputControl.checked ? "#ffffff" : "#e0e0e0"
-
 
                     validator: DoubleValidator {
-                            bottom: 0
-                            top: 3.3
-                            notation: DoubleValidator.StandardNotation
+                        bottom: 0
+                        top: 3.3
+                        notation: DoubleValidator.StandardNotation
                     }
                 }
             }
