@@ -1,6 +1,29 @@
 from PySide6.QtCore import QObject, Slot, Signal
-import RPi.GPIO as GPIO
 import os
+
+# Try to import RPi.GPIO, fall back to mock if not available (e.g., on Windows)
+try:
+    import RPi.GPIO as GPIO
+    RASPBERRY_PI = True
+except ImportError:
+    RASPBERRY_PI = False
+    print("RPi.GPIO not available - running in mock mode for development")
+
+# Mock PWM class for development on non-Raspberry Pi systems
+class MockPWM:
+    def __init__(self):
+        self.duty_cycle = 0
+    
+    def start(self, duty_cycle):
+        self.duty_cycle = duty_cycle
+        print(f"Mock PWM started with {duty_cycle}% duty cycle")
+    
+    def ChangeDutyCycle(self, duty_cycle):
+        self.duty_cycle = duty_cycle
+        print(f"Mock PWM duty cycle changed to {duty_cycle}%")
+    
+    def stop(self):
+        print("Mock PWM stopped")
 
 class VoltageController(QObject):
 
@@ -12,11 +35,15 @@ class VoltageController(QObject):
         self.gpio_pin = gpio_pin
         self.current_voltage = 0.0
 
-        GPIO.setmode(GPIO.BCM)
-        GPIO.setup(self.gpio_pin, GPIO.OUT)
-
-        self.pwm = GPIO.PWM(self.gpio_pin, 5000)  # 5 kHz
-        self.pwm.start(0)  # Start with 0% duty
+        if RASPBERRY_PI:
+            GPIO.setmode(GPIO.BCM)
+            GPIO.setup(self.gpio_pin, GPIO.OUT)
+            self.pwm = GPIO.PWM(self.gpio_pin, 5000)  # 5 kHz
+            self.pwm.start(0)  # Start with 0% duty
+        else:
+            # Mock PWM for development
+            self.pwm = MockPWM()
+            print(f"Mock PWM initialized for GPIO pin {gpio_pin}")
 
     @Slot(float)
     def set_voltage(self, voltage):
@@ -41,9 +68,11 @@ class VoltageController(QObject):
 
     def cleanup(self):
         self.pwm.stop()
-        GPIO.cleanup(self.gpio_pin)
-
-        print(f"PWM stopped and GPIO{self.gpio_pin} cleaned up")
+        if RASPBERRY_PI:
+            GPIO.cleanup(self.gpio_pin)
+            print(f"PWM stopped and GPIO{self.gpio_pin} cleaned up")
+        else:
+            print(f"Mock PWM stopped for GPIO{self.gpio_pin}")
 
 
 standalone_run = False
