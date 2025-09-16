@@ -95,171 +95,276 @@ Item {
                 }
             }
 
+            // Two-column layout with 3:1 ratio
             RowLayout {
                 Layout.fillWidth: true
-                spacing: resp.avg(120)
+                Layout.fillHeight: true
+                spacing: resp.avg(20)
 
-                Label {
-                    id:voltageLabel
-                    text: "Voltage"
-                    font.pixelSize: resp.avg(60)
-                    color: "#606060"
-                    Layout.alignment: Qt.AlignVCenter
-                }
-
+                // First column (3/4 of the width) - Voltage Control
                 ColumnLayout {
                     Layout.fillWidth: true
+                    Layout.fillHeight: true
+                    Layout.preferredWidth: parent.width * 0.75
+                    spacing: resp.avg(70)
 
                     RowLayout {
                         Layout.fillWidth: true
-                        spacing : resp.avg(70)
+                        spacing: resp.avg(120)
 
-                        CoreActionButton {
-                            id: subtractBtn
-                            implicitWidth : resp.avg(80)
-                            implicitHeight : resp.avg(80)
-                            radius: resp.avg(25)
-                            color: "#0F6CBD"
-                            colorPressed: "#d0d0d0"
-                            enabled: outputControl.checked
-                            opacity: outputControl.checked ? 1.0 : 0.5
-
-                            shadowEffect.opacity : 0.2
-                            image.source: "qrc:/images/icon-sub-3x.png"
-
-                            onClicked: {
-                                voltageSlider.value = Math.max(voltageSlider.from, voltageSlider.value - voltageSlider.stepSize)
-                            }
+                        Label {
+                            id:voltageLabel
+                            text: "Voltage"
+                            font.pixelSize: resp.avg(60)
+                            color: "#606060"
+                            Layout.alignment: Qt.AlignVCenter
                         }
 
-                        CoreSlider {
-                            id: voltageSlider
-                            from: 0
-                            to: 3.3
-                            value: 1.5
-                            stepSize: 0.1
-                            enabled : outputControl.checked
-                            opacity: outputControl.checked ? 1.0 : 0.3
-
-                            backgroundHeight: resp.avg(30)
+                        ColumnLayout {
                             Layout.fillWidth: true
-                            backgroundColor: "#D9D9D9"
-                            backgroundRadius : backgroundHeight/2
 
-                            backgroundHighlightedColor:"#0F6CBD"
+                            RowLayout {
+                                Layout.fillWidth: true
+                                spacing : resp.avg(70)
 
-                            handleAddChild: Image {
-                                source: "qrc:/images/icon-handle.png"
-                                anchors.centerIn: parent
-                                width: resp.avg(80)
-                                height: resp.avg(80)
+                                CoreActionButton {
+                                    id: subtractBtn
+                                    implicitWidth : resp.avg(80)
+                                    implicitHeight : resp.avg(80)
+                                    radius: resp.avg(25)
+                                    color: "#0F6CBD"
+                                    colorPressed: "#d0d0d0"
+                                    enabled: outputControl.checked
+                                    opacity: outputControl.checked ? 1.0 : 0.5
+
+                                    shadowEffect.opacity : 0.2
+                                    image.source: "qrc:/images/icon_minus.png"
+
+                                    onClicked: {
+                                        voltageSlider.value = Math.max(voltageSlider.from, voltageSlider.value - voltageSlider.stepSize)
+                                    }
+                                }
+
+                                CoreSlider {
+                                    id: voltageSlider
+                                    from: 0
+                                    to: 3.3
+                                    value: 1.5
+                                    stepSize: 0.1
+                                    enabled : outputControl.checked
+                                    opacity: outputControl.checked ? 1.0 : 0.3
+
+                                    backgroundHeight: resp.avg(30)
+                                    Layout.fillWidth: true
+                                    backgroundColor: "#D9D9D9"
+                                    backgroundRadius : backgroundHeight/2
+
+                                    backgroundHighlightedColor:"#0F6CBD"
+
+                                    handleAddChild: Image {
+                                        source: "qrc:/images/icon-handle.png"
+                                        anchors.centerIn: parent
+                                        width: resp.avg(80)
+                                        height: resp.avg(80)
+                                        fillMode: Image.PreserveAspectFit
+                                    }
+                                    
+                                    onValueChanged: {
+                                        voltage_controller.set_voltage(voltageSlider.value.toFixed(1))
+                                    }
+
+                                    Label {
+                                        id: min
+                                        text: "0"
+                                        color: "#aaaaaa"
+                                        font.pixelSize: resp.avg(50)
+                                        anchors.right :  parent.left
+                                        anchors.top : parent.bottom
+                                        anchors.rightMargin:  - resp.avg(16)
+                                    }
+
+                                    Label {
+                                        id: max
+                                        text: "3.3";
+                                        color: "#aaaaaa"
+                                        font.pixelSize: resp.avg(50)
+                                        anchors.left :  parent.right
+                                        anchors.top : parent.bottom
+                                        anchors.leftMargin: - resp.avg(50)
+                                    }
+
+                                }
+
+                                CoreActionButton {
+                                    id: addBtn
+                                    implicitWidth : resp.avg(80)
+                                    implicitHeight : resp.avg(80)
+                                    radius: resp.avg(25)
+                                    color: "#0F6CBD"
+                                    colorPressed: "#d0d0d0"
+                                    enabled: outputControl.checked
+                                    opacity: outputControl.checked ? 1.0 : 0.5
+
+                                    shadowEffect.opacity : 0.2
+                                    image.source: "qrc:/images/icon_add.png"
+
+                                    onClicked: {
+                                        voltageSlider.value = Math.min(voltageSlider.to, voltageSlider.value + voltageSlider.stepSize)
+
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    RowLayout {
+                        Layout.fillWidth: true
+                        spacing: resp.avg(80)
+
+                        Label {
+                            id: inputLabel
+                            text: "Input"
+                            font.pixelSize: resp.avg(60)
+                            color: "#606060"
+                        }
+
+                        Item { Layout.fillWidth: true }
+                        
+                        CoreTextField {
+                            id: voltageInput
+                            implicitHeight: resp.avg(150)
+                            placeholder: ""
+                            enabled: outputControl.checked
+                            Layout.fillWidth: true
+                            leftPadding: resp.avg(50)
+
+                            text: voltageSlider.value.toFixed(1)
+                            textColor: outputControl.checked ? "AFAFAF" : "#A0A0A0"
+                            placeholderTextColor: "#AFAFAF"
+                            font.pixelSize: resp.avg(58)
+
+                            fillColor: outputControl.checked ? "#FFFFFF" : "#E0E0E0"
+                            borderColor: "#E0E0E0"
+                            borderWidth: resp.avg(8)
+                            borderRadius: resp.avg(25)
+
+                            validator: DoubleValidator {
+                                bottom: 0
+                                top: 3.3
+                                notation: DoubleValidator.StandardNotation
+                            }
+                        }
+                    }
+
+                    CoreButton {
+                        id: submitBtn
+                        Layout.fillWidth: true
+                        implicitHeight: resp.avg(140)
+                        color : "#0F6CBD"
+                        radius: resp.avg(25)
+                        elevate: true
+                        enabled: outputControl.checked
+                        opacity: outputControl.checked ? 1.0 : 0.5
+
+                        label.text: "Submit"
+                        label.color: "#FFFFFF"
+                        label.font.pixelSize: resp.avg(56)
+                        label.font.weight: Font.Bold
+
+                        onClicked: {
+                            voltage_controller.set_voltage(parseFloat(voltageInput.text))
+                        }
+                    }
+                }
+
+                // Second column (1/4 of the width) - Dropdown and Hollow Box
+                ColumnLayout {
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+                    Layout.preferredWidth: parent.width * 0.25
+                    spacing: resp.avg(30)
+
+                    // Dropdown with options
+                    CoreComboBox {
+                        id: imageTypeDropdown
+                        Layout.fillWidth: true
+                        implicitHeight: resp.avg(60)
+                        enabled: outputControl.checked
+                        opacity: outputControl.checked ? 1.0 : 0.5
+                        
+                        model: ListModel {
+                            ListElement {text: "Select"}
+                            ListElement {text: "Image with Text"}
+                            ListElement {text: "Image with a Pic"}
+                        }
+                        
+                        // Custom styling to match the app theme
+                        dropBoxBackground.color: outputControl.checked ? "#FFFFFF" : "#E0E0E0"
+                        dropBoxBackground.border.color: "#0F6CBD"
+                        dropBoxBackground.border.width: resp.avg(2)
+                        dropBoxBackground.radius: resp.avg(8)
+                        
+                        dropBoxDisplayText.color: outputControl.checked ? "#606060" : "#A0A0A0"
+                        dropBoxDisplayText.font.pixelSize: resp.avg(16)
+                        
+                        delegateTextFieldColor: outputControl.checked ? "#606060" : "#A0A0A0"
+                        indicatorColor: "#0F6CBD"
+                        
+                        // Set default selection
+                        Component.onCompleted: {
+                            currentIndex = 0
+                        }
+                    }
+
+                    // Hollow box with blue border
+                    Rectangle {
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+                        Layout.minimumHeight: resp.avg(200)
+                        
+                        color: "transparent"
+                        border.color: "#0F6CBD"
+                        border.width: resp.avg(3)
+                        radius: resp.avg(8)
+                        opacity: outputControl.checked ? 1.0 : 0.5
+                        
+                        // Content based on dropdown selection
+                        ColumnLayout {
+                            anchors.fill: parent
+                            anchors.margins: resp.avg(20)
+                            spacing: resp.avg(15)
+                            
+                            // Image with Text content
+                            Image {
+                                Layout.fillWidth: true
+                                Layout.fillHeight: true
+                                visible: imageTypeDropdown.currentIndex === 1 // "Image with Text"
+                                source: "qrc:/images/image with text.jpeg"
                                 fillMode: Image.PreserveAspectFit
                             }
                             
-                            onValueChanged: {
-                                voltage_controller.set_voltage(voltageSlider.value.toFixed(1))
+                            // Image with a Pic content
+                            Image {
+                                Layout.fillWidth: true
+                                Layout.fillHeight: true
+                                visible: imageTypeDropdown.currentIndex === 2 // "Image with a Pic"
+                                source: "qrc:/images/image with pic.jpeg"
+                                fillMode: Image.PreserveAspectFit
                             }
-
-                            Label {
-                                id: min
-                                text: "0"
-                                color: "#aaaaaa"
-                                font.pixelSize: resp.avg(50)
-                                anchors.right :  parent.left
-                                anchors.top : parent.bottom
-                                anchors.rightMargin:  - resp.avg(16)
-                            }
-
-                            Label {
-                                id: max
-                                text: "3.3";
-                                color: "#aaaaaa"
-                                font.pixelSize: resp.avg(50)
-                                anchors.left :  parent.right
-                                anchors.top : parent.bottom
-                                anchors.leftMargin: - resp.avg(50)
-                            }
-
-                        }
-
-                        CoreActionButton {
-                            id: addBtn
-                            implicitWidth : resp.avg(80)
-                            implicitHeight : resp.avg(80)
-                            radius: resp.avg(25)
-                            color: "#0F6CBD"
-                            colorPressed: "#d0d0d0"
-                            enabled: outputControl.checked
-                            opacity: outputControl.checked ? 1.0 : 0.5
-
-                            shadowEffect.opacity : 0.2
-                            image.source: "qrc:/images/icon-add-3x.png"
-
-                            onClicked: {
-                                voltageSlider.value = Math.min(voltageSlider.to, voltageSlider.value + voltageSlider.stepSize)
-
+                            
+                            // Default content when "Select" is chosen
+                            Text {
+                                Layout.fillWidth: true
+                                Layout.fillHeight: true
+                                text: "Select an option above"
+                                color: "#AAAAAA"
+                                font.pixelSize: resp.avg(14)
+                                horizontalAlignment: Text.AlignHCenter
+                                verticalAlignment: Text.AlignVCenter
+                                visible: imageTypeDropdown.currentIndex === 0 // "Select"
                             }
                         }
                     }
-                }
-            }
-
-            RowLayout {
-                Layout.fillWidth: true
-                spacing: resp.avg(80)
-
-                Label {
-                    id: inputLabel
-                    text: "Input"
-                    font.pixelSize: resp.avg(60)
-                    color: "#606060"
-                }
-
-                Item { Layout.fillWidth: true }
-                
-                CoreTextField {
-                    id: voltageInput
-                    implicitHeight: resp.avg(150)
-                    placeholder: ""
-                    enabled: outputControl.checked
-                    Layout.fillWidth: true
-                    leftPadding: resp.avg(50)
-
-                    text: voltageSlider.value.toFixed(1)
-                    textColor: outputControl.checked ? "AFAFAF" : "#A0A0A0"
-                    placeholderTextColor: "#AFAFAF"
-                    font.pixelSize: resp.avg(58)
-
-                    fillColor: outputControl.checked ? "#FFFFFF" : "#E0E0E0"
-                    borderColor: "#E0E0E0"
-                    borderWidth: resp.avg(8)
-                    borderRadius: resp.avg(25)
-
-                    validator: DoubleValidator {
-                        bottom: 0
-                        top: 3.3
-                        notation: DoubleValidator.StandardNotation
-                    }
-                }
-            }
-
-            CoreButton {
-                id: submitBtn
-                Layout.fillWidth: true
-                implicitHeight: resp.avg(140)
-                color : "#0F6CBD"
-                radius: resp.avg(25)
-                elevate: true
-                enabled: outputControl.checked
-                opacity: outputControl.checked ? 1.0 : 0.5
-
-                label.text: "Submit"
-                label.color: "#FFFFFF"
-                label.font.pixelSize: resp.avg(56)
-                label.font.weight: Font.Bold
-
-                onClicked: {
-                    voltage_controller.set_voltage(parseFloat(voltageInput.text))
                 }
             }
         }

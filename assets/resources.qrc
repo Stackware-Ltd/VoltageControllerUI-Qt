@@ -3,7 +3,6 @@
         <file>main.qml</file>
         <file>screens/ScreenMain.qml</file>
         <file>screens/qmldir</file>
-        <file>images/icon-info.png</file>
         <file>components/application/DropDownBox/DropDownBox.qml</file>
         <file>components/application/DropDownBox/SearchDropDownBox.qml</file>
         <file>components/application/NavigationBar/NavigationBar.qml</file>
@@ -29,11 +28,12 @@
         <file>components/core/Toaster/Toast.qml</file>
         <file>components/core/Toaster/ToastManager.qml</file>
         <file>components/core/qmldir</file>
-        <file>images/icon-add-3x.png</file>
-        <file>images/icon-sub-3x.png</file>
-        <file>images/icon-sub-2x.png</file>
         <file>components/core/CoreSlider/CoreSlider.qml</file>
-        <file>images/icon-handle.png</file>
         <file>images/icon-info-2x.png</file>
+        <file>images/icon_add.png</file>
+        <file>images/icon_minus.png</file>
+        <file>images/image with text.jpeg</file>
+        <file>images/image with pic.jpeg</file>
+        <file>images/icon-handle.png</file>
     </qresource>
 </RCC>
